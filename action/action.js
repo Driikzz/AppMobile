@@ -8,7 +8,8 @@ const userSlice = createSlice({
     email: '',
     password: '',
     registrations: [],
-    loggedInUser: null, // Ajoutez la propriété loggedInUser initialisée à null
+    loggedInUser: null,
+    loginError: null,
   },
   reducers: {
     setName: (state, action) => {
@@ -37,9 +38,20 @@ const userSlice = createSlice({
         state.loggedInUser.name = action.payload;
       }
     },
+    loginUserSuccess: (state, action) => {
+      const user = action.payload;
+      state.loggedInUser = user;
+      state.name = user.name;
+      state.email = user.email;
+      state.password = user.password;
+      state.loginError = null;
+    },
+    loginUserFailure: (state, action) => {
+      state.loginError = action.payload;
+    },
   },
 });
 
-export const { setName, setEmail, setPassword, addRegistration, resetUser,setLoggedInUser,updateName, } = userSlice.actions;
+export const { setName, setEmail, setPassword, addRegistration, resetUser,setLoggedInUser,updateName,loginUserFailure,loginUserSuccess } = userSlice.actions;
 
 export default userSlice.reducer;

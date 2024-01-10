@@ -1,7 +1,6 @@
-// In App.js in a new project
 
 import * as React from 'react';
-import { View, Text, Button, StyleSheet,Image } from 'react-native';
+import { View, Text, Button, StyleSheet,Image, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignIn from './screens/SignIn';
@@ -18,7 +17,11 @@ import ProgressBar from './components/ProgressBar';
 
 
 function HomeScreen({navigation}) {
-  const loggedInUser = useSelector((state) => state.user.loggedInUser);
+  // const loggedInUser = useSelector((state) => state.user.loggedInUser);
+  const user = useSelector(state => state.user.loggedInUser);
+  React.useEffect(() => {
+    console.log('Informations de l\'utilisateur :', user);
+  }, []);
   return (
     <View style={styles.container}>
       
@@ -27,11 +30,11 @@ function HomeScreen({navigation}) {
           <Image source={require('./assets/Ellipse3.png')} style={styles.headerImage} />
         </View>
         <View style={styles.headerTitle}>
-          <Text style={styles.headerName} >Hello, {loggedInUser ? loggedInUser.name : 'Utilisateur'}</Text>
+          <Text style={styles.headerName} >Hello, {user.name}</Text>
           <Text style={styles.headerJob} >Beginner</Text>
         </View>
         <View style={styles.headerLogo}>
-          <Icon name="settings-cogwheel-button" height="24" width="24" color='lightgrey'/>
+          <TouchableOpacity><Icon name="settings-cogwheel-button" height="24" width="24" color='lightgrey'/></TouchableOpacity>
         </View>
       </View>
 
@@ -82,7 +85,7 @@ function HomeScreen({navigation}) {
                 <Text style={{color:'lightgrey'}}> 11,2km/hr</Text>
               </View>
             </View>
-            <View style={styles.section3Icon}><Icon name="keyboard-right-arrow-button-1" height="16" width="16" color='black'/></View>
+            <View style={styles.section3Icon}><TouchableOpacity><Icon name="keyboard-right-arrow-button-1" height="16" width="16" color='black'/></TouchableOpacity></View>
           </View>
 
           <View style={styles.section3CardA}>
@@ -97,7 +100,7 @@ function HomeScreen({navigation}) {
                 <Text style={{color:'lightgrey'}}> 11,2km/hr</Text>
               </View>
             </View>
-            <View style={styles.section3Icon}><Icon name="keyboard-right-arrow-button-1" height="16" width="16" color='black'/></View>
+            <View style={styles.section3Icon}><TouchableOpacity><Icon name="keyboard-right-arrow-button-1" height="16" width="16" color='black'/></TouchableOpacity></View>
           </View>
 
           <View style={styles.section3CardA}>
@@ -112,7 +115,7 @@ function HomeScreen({navigation}) {
                 <Text style={{color:'lightgrey'}}> 11,2km/hr</Text>
               </View>
             </View>
-            <View style={styles.section3Icon}><Icon name="keyboard-right-arrow-button-1" height="16" width="16" color='black'/></View>
+            <View style={styles.section3Icon}><TouchableOpacity><Icon name="keyboard-right-arrow-button-1" height="16" width="16" color='black'/></TouchableOpacity></View>
           </View>
           
 
